@@ -46,7 +46,7 @@ class MailView
 
   protected
     def actions
-      public_methods(false).map(&:to_s) - ['call']
+      (self.class.instance_methods - self.class.superclass.instance_methods).map(&:to_s)
     end
 
     def email_template
