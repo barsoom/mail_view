@@ -86,7 +86,10 @@ class MailView
         body_part = if mail.respond_to?(:all_parts)
                       mail.all_parts.find { |part| part.content_type.match(content_type) } || mail.parts.first
                     else
-                      mail.parts.find { |part| part.content_type.match(content_type) } || mail.parts.first
+                      #NOTE: We have a problem previewing mails with attachments, seems mails with attachments
+                      #      has nested multiparts(!?). Have not been able to reproduce it in a test
+                      recursive_parts = mail.parts.map { |part| part.multipart? ? part.parts : part }.flatten
+                      recursive_parts.find { |part| part.content_type.match(content_type) } || mail.parts.first
                     end
       end
 
