@@ -45,8 +45,9 @@ class MailView
   end
 
   protected
+    # Mail views should be listed in order
     def actions
-      (self.class.instance_methods - self.class.superclass.instance_methods).map(&:to_s)
+      (self.class.instance_methods - self.class.superclass.instance_methods).map(&:to_s).sort
     end
 
     def email_template
