@@ -1,5 +1,22 @@
-<ul>
-<% links.each do |name, link| %>
-  <li><a href="<%= link %>"><%= name %></a></li>
-<% end %>
-</ul>
+<style type="text/css">
+  .display-frame {
+    float: right;
+  }
+
+  .links {
+    float: left;
+  }
+</style>
+<script type="text/javascript" language="javascript">
+  function navigateURL(url) {
+    window.document.all.displayframe.src = url;
+  }
+</script>
+<div class="links">
+  <ul>
+  <% links.each do |name, link| %>
+    <li><a href="javascript:navigateURL('http://auctionet.dev<%= link %>');"><%= name %></a></li>
+  <% end %>
+  </ul>
+</div>
+<iframe src="" width="50%" height="50%" name="displayframe" class="display-frame" id="displayframe" frameBorder="0"/>
