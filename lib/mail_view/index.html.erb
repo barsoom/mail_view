@@ -1,17 +1,61 @@
 <style type="text/css">
   .display-frame {
     float: right;
+    background:white;
+    width: 70%;
+    height: 100%;
   }
 
   .links {
     float: left;
   }
+  body {
+    background: #fff url(/assets/public/background-ea9e942a103c7dca5f911f88bf44e5b7.jpg) repeat-x;
+    color: #404040;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ddd;
+    min-width: 990px;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 18px;
+  }
+  .more-space {
+    width: 100px;
+  }
 </style>
-<div class="links">
-  <ul>
-  <% links.each do |name, link| %>
-    <li><a href="<%= link %>" target="displayframe"><%= name %></a></li>
-  <% end %>
-  </ul>
-</div>
-<iframe src="" width="50%" height="100%" name="displayframe" class="display-frame" frameBorder="0"/>
+<body>
+  <div class="links">
+    <table>
+      <tr>
+        <th>
+          Namn
+        </th>
+        <th class="more-space">
+          Svenska
+        </th>
+        <th class="more-space">
+          Engelska
+        </th>
+      </tr>
+      <% links.each do |name, link_sv, link_en| %>
+        <% if name %>
+          <tr>
+            <td>
+              <%= name.gsub('_', ' ') %>
+            </td>
+              <td>
+                <a href="<%= link_sv %>" target="displayframe">visa</a>
+              </td>
+              <% if link_en %>
+                <td>
+                  <a href="<%= link_en %>" target="displayframe">visa</a>
+                </td>
+              <% end %>
+          </tr>
+        <% end %>
+      <% end %>
+    </table>
+  </div>
+  <iframe src="" name="displayframe" class="display-frame" frameBorder="0"/>
+</body>
