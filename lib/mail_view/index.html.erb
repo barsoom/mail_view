@@ -15,8 +15,8 @@
 <div class="links">
   <ul>
   <% links.each do |name, link| %>
-    <li><a href="javascript:navigateURL('http://auctionet.dev<%= link %>');"><%= name %></a></li>
+    <li><a href="javascript:navigateURL(location.host + '<%= link %>');"><%= name %></a></li>
   <% end %>
   </ul>
 </div>
-<iframe src="" width="50%" height="50%" name="displayframe" class="display-frame" id="displayframe" frameBorder="0"/>
+<iframe src="" width="50%" height="100%" name="displayframe" class="display-frame" id="displayframe" frameBorder="0"/>
