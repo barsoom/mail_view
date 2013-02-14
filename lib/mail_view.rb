@@ -27,13 +27,14 @@ class MailView
     if path_info == "" || path_info == "/"
       links = self.actions.map do |action|
         if /_en\z/ =~ action
-          [action.sub('_en',''), "#{env["SCRIPT_NAME"]}/#{action.sub('_en','_sv')}", "#{env["SCRIPT_NAME"]}/#{action}"]
+          [action.sub('_en',''), { sv: "#{env["SCRIPT_NAME"]}/#{action.sub('_en','_sv')}", en: "#{env["SCRIPT_NAME"]}/#{action}" }]
         elsif /_sv\z/ =~ action
           next
         else
-          [action, "#{env["SCRIPT_NAME"]}/#{action}"]
+          [action, { sv: "#{env["SCRIPT_NAME"]}/#{action}" }]
         end
       end
+      links.compact!
 
       ok index_template.render(Object.new, :links => links)
     elsif path_info =~ /([\w_]+)(\.\w+)?$/

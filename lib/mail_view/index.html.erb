@@ -35,8 +35,9 @@
   .more-space {
     width: 100px;
   }
-.links .center-align {
-  text-align: center;
+
+  .center-align {
+    text-align: center;
 }
 
 </style>
@@ -54,22 +55,17 @@
           Engelska
         </th>
       </tr>
-      <% links.each do |name, link_sv, link_en| %>
-        <% if name %>
-          <tr>
-            <td>
-              <%= name.gsub('_', ' ') %>
+      <% links.each do |name, row_links| %>
+        <tr>
+          <td>
+            <%= name.gsub('_', ' ') %>
+          </td>
+          <% row_links.values.each do |link| %>
+            <td class="center-align">
+              <a href="<%= link %>" target="displayframe">visa</a>
             </td>
-              <td class="center-align">
-                <a href="<%= link_sv %>" target="displayframe">visa</a>
-              </td>
-              <% if link_en %>
-                <td class="center-align">
-                  <a href="<%= link_en %>" target="displayframe">visa</a>
-                </td>
-              <% end %>
-          </tr>
-        <% end %>
+          <% end %>
+        </tr>
       <% end %>
     </table>
   </div>
