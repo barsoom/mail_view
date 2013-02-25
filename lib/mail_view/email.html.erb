@@ -55,6 +55,7 @@
     <% end %>
 
     <dt>From:</dt>
+    <dd><%= Rack::Utils.escape_html mail[:from] %></dd>
     <dd><%= mail.from %></dd>
 
     <% if mail.reply_to %>
